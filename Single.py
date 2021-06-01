@@ -171,7 +171,7 @@ def gamespiderAsia( gameid , betid):
                 # print('test')
                 dataarrange.Singleupdata(Homescore, Guestscore, gameid, Date)
 
-    path = root + '\\' + 'data\\' + str(gameid) + 'Asia' + betstr[betid] +'.xlsx'
+    path = root + '/' + 'data/' + str(gameid) + 'Asia' + betstr[betid] +'.xlsx'
     df.to_excel(path, header=None)
     return
 
@@ -232,7 +232,7 @@ def gamespiderEuro( gameid , betid):
 
     df = pd.DataFrame(result)
     betstr = ['365bet', '10bet', 'aobet']
-    path = root + '\\' + 'data\\' + str(gameid) + 'Euro' + betstr[betid] + '.xlsx'
+    path = root + '/' + 'data/' + str(gameid) + 'Euro' + betstr[betid] + '.xlsx'
     #print(df)
     df.to_excel(path, header=None)
     return
@@ -305,7 +305,7 @@ def gamespiderBS( gameid , betid):
     # deadtime = deadtime.replace(":", "")
     betstr = ['365bet', '10bet', 'aobet']
     df = pd.DataFrame(result)
-    path = root + '\\' + 'data\\' + str(gameid) + 'BS' + betstr[betid] + '.xlsx'
+    path = root + '/' + 'data/' + str(gameid) + 'BS' + betstr[betid] + '.xlsx'
     df.to_excel(path, header=None)
     return
 
