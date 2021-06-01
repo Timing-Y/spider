@@ -7,8 +7,8 @@ gameid2 = 1913930
 betid = 1
 betstr = ['365bet', '10bet', 'aobet']
 root = os.getcwd()
-path1 = root + '\\' + 'data\\' + str(gameid1) + 'Euro' + betstr[betid] + '.xlsx'
-path2 = root + '\\' + 'data\\' + str(gameid2) + 'Euro' + betstr[betid] + '.xlsx'
+path1 = root + '/' + 'data/' + str(gameid1) + 'Euro' + betstr[betid] + '.xlsx'
+path2 = root + '/' + 'data/' + str(gameid2) + 'Euro' + betstr[betid] + '.xlsx'
 sp_result1 = pd.read_excel(path1)
 sp_result2 = pd.read_excel(path2)
 #print(sp_result)
