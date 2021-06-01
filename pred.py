@@ -20,7 +20,7 @@ import math
 import datetime
 
 
-list_Hdirs = ["HModel20210120", "HModel20210121", "HModel20210122"]
+list_Hdirs = ["HModel20210120", "HModel20210121", "HModel20210122", "HModel20210123"]
 list_Ddirs = ["DModel20210121"]
 list_D2dirs = ["DModel20210122", "DModel20210123"]
 list_Adirs = ["AModel20210124"]
@@ -30,10 +30,10 @@ list_D4dirs = ["DModel20210222", "DModel20210223", "DModel20210224", "DModel2021
 # Press the green button in the gutter to run the script.
 def pred( ):
     root = os.getcwd()
-    real_path = root + '\\' + 'realdata' + '.xlsx'
-    train_path = root + '\\' + 'traindata' + '.xlsx'
-    test_path = root + '\\' + 'testdata' + '.xlsx'
-    nopred_path = root + '\\' + 'Nopreddata' + '.xlsx'
+    real_path = root + '/' + 'realdata' + '.xlsx'
+    train_path = root + '/' + 'traindata' + '.xlsx'
+    test_path = root + '/' + 'testdata' + '.xlsx'
+    nopred_path = root + '/' + 'Nopreddata' + '.xlsx'
 
     real_data = pd.DataFrame(pd.read_excel(test_path))
     real_data = real_data.fillna(0)
@@ -104,8 +104,8 @@ def pred( ):
     # Y_test = data_test[:, -1]
 
     mode = 0
-    allpred_path = root + '\\' + 'Allpred' + '.xlsx'
-    testpred_path = root + '\\' + 'Nearpred' + '.xlsx'
+    allpred_path = root + '/' + 'Allpred' + '.xlsx'
+    testpred_path = root + '/' + 'Nearpred' + '.xlsx'
 
     out_allpred = pd.DataFrame()
     out_testpred = pd.DataFrame()
@@ -151,7 +151,7 @@ def pred( ):
                 lambda x: -1 if (float)(x['prob']) >= 0.65 else (1 if (float)(x['prob']) <= -0.7 else 0), axis=1)
             out_allpred[dirs] = out_pred[dirs + "pred"]
             # out_pred[dirs + "pred"] = ((out_pred[dirs + "prob"] >= 0.8) or (out_pred[dirs + "prob"] <= -0.8))
-            preddata_path = root + '\\' + dirs + '.xlsx'
+            preddata_path = root + '/' + dirs + '.xlsx'
             out_pred.to_excel(preddata_path)
 
             test_pred.append(score_list)
@@ -161,12 +161,12 @@ def pred( ):
             test_pred[dirs + "pred"] = test_pred.apply(
                 lambda x: -1 if (float)(x['prob']) >= 0.65 else (1 if (float)(x['prob']) <= -0.7 else 0), axis=1)
             out_testpred[dirs] = test_pred[dirs + "pred"]
-            testpreddata_path = root + '\\' + dirs + '.xlsx'
+            testpreddata_path = root + '/' + dirs + '.xlsx'
             test_pred.to_excel(testpreddata_path)
 
             curtime = datetime.datetime.now().strftime('%Y/%m%d')
             print(curtime)
-            path_history = root + '\\history.xlsx'
+            path_history = root + '/history.xlsx'
             df_history = pd.DataFrame(pd.read_excel(path_history))
             df_history.set_index('model')
             a = (df_history['model'] == dirs)
@@ -222,7 +222,7 @@ def pred( ):
                 lambda x: -1 if (float)(x["prob"]) >= 0.65 else (1 if (float)(x["prob"]) <= -0.7 else 0), axis=1)
             out_allpred[dirs] = out_pred[dirs + "pred"]
             # out_pred[dirs + "pred"] = ((out_pred[dirs + "prob"] >= 0.8) or (out_pred[dirs + "prob"] <= -0.8))
-            preddata_path = root + '\\' + dirs + '.xlsx'
+            preddata_path = root + '/' + dirs + '.xlsx'
             out_pred.to_excel(preddata_path)
 
             test_pred.append(score_list)
@@ -232,12 +232,12 @@ def pred( ):
             test_pred[dirs + "pred"] = test_pred.apply(
                 lambda x: -1 if (float)(x['prob']) >= 0.65 else (1 if (float)(x['prob']) <= -0.7 else 0), axis=1)
             out_testpred[dirs] = test_pred[dirs + "pred"]
-            testpreddata_path = root + '\\' + dirs + '.xlsx'
+            testpreddata_path = root + '/' + dirs + '.xlsx'
             test_pred.to_excel(testpreddata_path)
 
             curtime = datetime.datetime.now().strftime('%Y/%m%d')
             print(curtime)
-            path_history = root + '\\history.xlsx'
+            path_history = root + '/history.xlsx'
             df_history = pd.DataFrame(pd.read_excel(path_history))
             df_history.set_index('model')
             a = (df_history['model'] == dirs)
@@ -293,7 +293,7 @@ def pred( ):
                 lambda x: -1 if (float)(x["prob"]) >= 0.65 else (1 if (float)(x["prob"]) <= -0.7 else 0), axis=1)
             out_allpred[dirs] = out_pred[dirs + "pred"]
             # out_pred[dirs + "pred"] = ((out_pred[dirs + "prob"] >= 0.8) or (out_pred[dirs + "prob"] <= -0.8))
-            preddata_path = root + '\\' + dirs + '.xlsx'
+            preddata_path = root + '/' + dirs + '.xlsx'
             out_pred.to_excel(preddata_path)
 
             test_pred.append(score_list)
@@ -303,12 +303,12 @@ def pred( ):
             test_pred[dirs + "pred"] = test_pred.apply(
                 lambda x: -1 if (float)(x['prob']) >= 0.65 else (1 if (float)(x['prob']) <= -0.7 else 0), axis=1)
             out_testpred[dirs] = test_pred[dirs + "pred"]
-            testpreddata_path = root + '\\' + dirs + '.xlsx'
+            testpreddata_path = root + '/' + dirs + '.xlsx'
             test_pred.to_excel(testpreddata_path)
 
             curtime = datetime.datetime.now().strftime('%Y/%m%d')
             print(curtime)
-            path_history = root + '\\history.xlsx'
+            path_history = root + '/history.xlsx'
             df_history = pd.DataFrame(pd.read_excel(path_history))
             df_history.set_index('model')
             a = (df_history['model'] == dirs)
@@ -364,7 +364,7 @@ def pred( ):
                 lambda x: -1 if (float)(x["prob"]) >= 0.65 else (1 if (float)(x["prob"]) <= -0.7 else 0), axis=1)
             out_allpred[dirs] = out_pred[dirs + "pred"]
             # out_pred[dirs + "pred"] = ((out_pred[dirs + "prob"] >= 0.8) or (out_pred[dirs + "prob"] <= -0.8))
-            preddata_path = root + '\\' + dirs + '.xlsx'
+            preddata_path = root + '/' + dirs + '.xlsx'
             out_pred.to_excel(preddata_path)
 
             test_pred.append(score_list)
@@ -374,12 +374,12 @@ def pred( ):
             test_pred[dirs + "pred"] = test_pred.apply(
                 lambda x: -1 if (float)(x['prob']) >= 0.65 else (1 if (float)(x['prob']) <= -0.7 else 0), axis=1)
             out_testpred[dirs] = test_pred[dirs + "pred"]
-            testpreddata_path = root + '\\' + dirs + '.xlsx'
+            testpreddata_path = root + '/' + dirs + '.xlsx'
             test_pred.to_excel(testpreddata_path)
 
             curtime = datetime.datetime.now().strftime('%Y/%m%d')
             print(curtime)
-            path_history = root + '\\history.xlsx'
+            path_history = root + '/history.xlsx'
             df_history = pd.DataFrame(pd.read_excel(path_history))
             df_history.set_index('model')
             a = (df_history['model'] == dirs)
@@ -435,7 +435,7 @@ def pred( ):
                 lambda x: 1 if (float)(x["prob"]) >= 0.65 else (-1 if (float)(x["prob"]) <= -0.7 else 0), axis=1)
             out_allpred[dirs] = out_pred[dirs + "pred"]
             # out_pred[dirs + "pred"] = ((out_pred[dirs + "prob"] >= 0.8) or (out_pred[dirs + "prob"] <= -0.8))
-            preddata_path = root + '\\' + dirs + '.xlsx'
+            preddata_path = root + '/' + dirs + '.xlsx'
             out_pred.to_excel(preddata_path)
 
             test_pred.append(score_list)
@@ -445,12 +445,12 @@ def pred( ):
             test_pred[dirs + "pred"] = test_pred.apply(
                 lambda x: 1 if (float)(x['prob']) >= 0.65 else (-1 if (float)(x['prob']) <= -0.7 else 0), axis=1)
             out_testpred[dirs] = test_pred[dirs + "pred"]
-            testpreddata_path = root + '\\' + dirs + '.xlsx'
+            testpreddata_path = root + '/' + dirs + '.xlsx'
             test_pred.to_excel(testpreddata_path)
 
             curtime = datetime.datetime.now().strftime('%Y/%m%d')
             print(curtime)
-            path_history = root + '\\history.xlsx'
+            path_history = root + '/history.xlsx'
             df_history = pd.DataFrame(pd.read_excel(path_history))
             df_history.set_index('model')
             a = (df_history['model'] == dirs)
@@ -506,7 +506,7 @@ def pred( ):
                 lambda x: -1 if (float)(x["prob"]) >= 0.65 else (1 if (float)(x["prob"]) <= -0.7 else 0), axis=1)
             out_allpred[dirs] = out_pred[dirs + "pred"]
             # out_pred[dirs + "pred"] = ((out_pred[dirs + "prob"] >= 0.8) or (out_pred[dirs + "prob"] <= -0.8))
-            preddata_path = root + '\\' + dirs + '.xlsx'
+            preddata_path = root + '/' + dirs + '.xlsx'
             out_pred.to_excel(preddata_path)
 
             test_pred.append(score_list)
@@ -516,12 +516,12 @@ def pred( ):
             test_pred[dirs + "pred"] = test_pred.apply(
                 lambda x: -1 if (float)(x['prob']) >= 0.65 else (1 if (float)(x['prob']) <= -0.7 else 0), axis=1)
             out_testpred[dirs] = test_pred[dirs + "pred"]
-            testpreddata_path = root + '\\' + dirs + '.xlsx'
+            testpreddata_path = root + '/' + dirs + '.xlsx'
             test_pred.to_excel(testpreddata_path)
 
             curtime = datetime.datetime.now().strftime('%Y/%m%d')
             print(curtime)
-            path_history = root + '\\history.xlsx'
+            path_history = root + '/history.xlsx'
             df_history = pd.DataFrame(pd.read_excel(path_history))
             df_history.set_index('model')
             a = (df_history['model'] == dirs)
@@ -564,14 +564,14 @@ def pred( ):
         out_allpred['pred'] = out_allpred.apply(
             lambda x: '主' if (float)(x['sum']) >= 10 else ('客' if (float)(x['sum']) <= -14 else 0), axis=1)
 
-        pred_path = root + '\\' + dirs + '\\' + curtime + 'Pred' + '.xlsx'
+        pred_path = root + '/' + dirs + '/' + curtime + 'Pred' + '.xlsx'
         out_pred = out_allpred[
             ["编号", "时间", "赛事", "状态", "主", ":", "客", "主队", "客队", "主客盘口", "大小盘口", "主客结果", "大小结果", "sum", "pred"]]
         out_pred.to_excel(pred_path)
-        mail(out_pred,curtime)
-
+        #mail(out_pred,curtime)
+'''
 root = os.getcwd()
-allpred_path = root + '\\' + 'Allpred' + '.xlsx'
+allpred_path = root + '/' + 'Allpred' + '.xlsx'
 out_allpred = pd.DataFrame(pd.read_excel(allpred_path))
 
 curtime = datetime.datetime.now().strftime('%Y%m%d%H')
@@ -583,9 +583,10 @@ out_allpred = out_allpred[abs(out_allpred['sum']) >= 10]
 out_allpred['pred'] = out_allpred.apply(
     lambda x: '主' if (float)(x['sum']) >= 10 else ('客' if (float)(x['sum']) <= -14 else 0), axis=1)
 
-pred_path = root + '\\' + dirs + '\\' + curtime + 'Pred' + '.xlsx'
+pred_path = root + '/' + dirs + '/' + curtime + 'Pred' + '.xlsx'
 out_pred = out_allpred[
     ["编号", "时间", "赛事", "状态", "主", ":", "客", "主队", "客队", "主客盘口", "大小盘口", "主客结果", "大小结果", "sum", "pred"]]
 out_pred.to_excel(pred_path)
 mail(out_pred,curtime,pred_path)
+'''
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
