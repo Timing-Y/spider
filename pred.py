@@ -566,8 +566,10 @@ def pred( ):
 
         pred_path = root + '/' + dirs + '/' + curtime + 'Pred' + '.xlsx'
         out_pred = out_allpred[
-            ["编号", "时间", "赛事", "状态", "主", ":", "客", "主队", "客队", "主客盘口", "大小盘口", "主客结果", "大小结果", "sum", "pred"]]
+            ["时间", "赛事", "状态", "主", ":", "客", "主队", "客队", "主客盘口", "大小盘口", "pred"]]
         out_pred.to_excel(pred_path)
+        data_html = out_pred.to_html()
+        ret = mail(data_html,curtime)
         #mail(out_pred,curtime)
 '''
 root = os.getcwd()
