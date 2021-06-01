@@ -17,7 +17,7 @@ def print_hi(name):
     print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
 
 
-@retry
+#@retry
 def test():
     gameid = guesssp.spider()
     new_sp = guesssp.arrange(gameid)
