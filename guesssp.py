@@ -89,7 +89,7 @@ def spider(  ):
     time_now = time.strftime("%Y%m%d", time.localtime())
     #获取当前路径
     root = os.getcwd()
-    path = root + '\\' + time_now + '.xlsx'
+    path = root + '/' + time_now + '.xlsx'
     df = pd.DataFrame(result)
     df[1] = ['2021-%s' % i for i in df[1]]
     #print(df)
@@ -105,8 +105,8 @@ def arrange( newid ):
         newid_t.append(int(i))
     # newid = newid_t
     root = os.getcwd()
-    path_wait = root + '\\' + 'wait' + '.xlsx'
-    path_done = root + '\\' + 'done' + '.xlsx'
+    path_wait = root + '/' + 'wait' + '.xlsx'
+    path_done = root + '/' + 'done' + '.xlsx'
     wait_sp = pd.read_excel(path_wait)
     done_sp = pd.read_excel(path_done)
     done_sp_list = done_sp[0].tolist()
@@ -124,7 +124,7 @@ def arrange( newid ):
 
 def spider_done( id ):
     root = os.getcwd()
-    path_done = root + '\\' + 'done' + '.xlsx'
+    path_done = root + '/' + 'done' + '.xlsx'
     done_sp = pd.read_excel(path_done)
     done_sp_list = done_sp[0].tolist()
     done_sp_list.append(id)
