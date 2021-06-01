@@ -68,7 +68,7 @@ def dar(data):
     # data['主客结果'] = data.apply(lambda x: 1 if (float)(x['主']) - (float)(x['客']) > (float)(x['主客盘口']) else (0 if (float)(x['主']) - (float)(x['客']) == (float)(x['主客盘口']) else -1), axis=1)
     # data['大小结果'] = data.apply(lambda x: 1 if (float)(x['主']) + (float)(x['客']) > (float)(x['大小盘口']) else (0 if (float)(x['主']) + (float)(x['客']) == (float)(x['主客盘口']) else -1), axis=1)
     root = os.getcwd()
-    path_done = root + '\\' + 'done' + '.xlsx'
+    path_done = root + '/' + 'done' + '.xlsx'
     done_sp = pd.read_excel(path_done)
     #print(type(data))
     data_list = data["编号"].tolist()
@@ -83,7 +83,7 @@ def dar(data):
     #print(data)
 
 
-    path = root + '\\' + 'Tdata' + '.xlsx'
+    path = root + '/' + 'Tdata' + '.xlsx'
     Tdata = pd.read_excel(path)
     result = Tdata.append(data, ignore_index=True)
     result['编号'] = result['编号'].astype('str')
@@ -99,10 +99,10 @@ def dar(data):
 
 def EuroandAsiaUpdata(gameid):
     root = os.getcwd()
-    path_asia = root + '\\' + 'data' + '\\' + str(gameid) + 'Asia365bet' + '.xlsx'
-    path_euro = root + '\\' + 'data' + '\\' + str(gameid) + 'Euro365bet' + '.xlsx'
-    path_bs = root + '\\' + 'data' + '\\' + str(gameid) + 'BS365bet' + '.xlsx'
-    path = root + '\\' + 'Tdata' + '.xlsx'
+    path_asia = root + '/' + 'data' + '/' + str(gameid) + 'Asia365bet' + '.xlsx'
+    path_euro = root + '/' + 'data' + '/' + str(gameid) + 'Euro365bet' + '.xlsx'
+    path_bs = root + '/' + 'data' + '/' + str(gameid) + 'BS365bet' + '.xlsx'
+    path = root + '/' + 'Tdata' + '.xlsx'
     Udata = pd.read_excel(path)
     list_asia = pd.read_excel(path_asia)
     print(gameid)
@@ -227,7 +227,7 @@ def EuroandAsiaUpdata(gameid):
 
 def Singleupdata(Homescore, Guestscore, gameid, Date):
     root = os.getcwd()
-    path = root + '\\' + 'Tdata' + '.xlsx'
+    path = root + '/' + 'Tdata' + '.xlsx'
     Udata = pd.read_excel(path)
 
     print(gameid)
