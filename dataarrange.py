@@ -25,11 +25,24 @@ def dar(data):
     data.replace('三球半/四', 3.75, inplace = True)
     data.replace('四球', 4, inplace = True)
     data.replace('四/四球半', 4.25, inplace=True)
+    data.replace('四球半', 4.5, inplace=True)
+    data.replace('四球半/五', 4.75, inplace=True)
 
+    data.replace('五球', 5, inplace=True)
+    data.replace('五/五球半', 5.25, inplace=True)
+    data.replace('五球半', 5.5, inplace=True)
+    data.replace('五球半/六', 5.75, inplace=True)
+
+    data.replace('六球', 6, inplace=True)
+    data.replace('六/六球半', 6.25, inplace=True)
     data.replace('六球半', 6.5, inplace=True)
     data.replace('六球半/七', 6.75, inplace=True)
+
     data.replace('七球', 7, inplace=True)
     data.replace('七/七球半', 7.25, inplace=True)
+    data.replace('七球半', 7.5, inplace=True)
+    data.replace('七球半/七', 7.75, inplace=True)
+
 
     data.replace('受平/半', -0.25, inplace = True)
     data.replace('受半球', -0.5, inplace = True)
@@ -46,20 +59,40 @@ def dar(data):
     data.replace('受三/三球半', -3.25, inplace = True)
     data.replace('受三球半', -3.5, inplace = True)
     data.replace('受三球半/四', -3.75, inplace = True)
+
     data.replace('受四球', -4, inplace = True)
+    data.replace('受四/四球半', -4.25, inplace=True)
+    data.replace('受四球半', -4.5, inplace=True)
+    data.replace('受四球半/五', -4.75, inplace=True)
 
-    data.replace('0.5/1', 0.75, inplace = True)
-    data.replace('1/1.5', 1.25, inplace = True)
-    data.replace('1.5/2', 1.75, inplace = True)
-    data.replace('2/2.5', 2.25, inplace = True)
-    data.replace('2.5/3', 2.75, inplace = True)
-    data.replace('3/3.5', 3.25, inplace = True)
-    data.replace('3.5/4', 3.75, inplace = True)
-    data.replace('4/4.5', 4.25, inplace = True)
-    data.replace('4.5/5', 4.75, inplace = True)
-    data.replace('5/5.5', 5.25, inplace = True)
-    data.replace('5.5/6', 5.75, inplace = True)
+    data.replace('受五球', -5, inplace=True)
+    data.replace('受五/五球半', -5.25, inplace=True)
+    data.replace('受五球半', -5.5, inplace=True)
+    data.replace('受五球半/六', -5.75, inplace=True)
 
+    data.replace('受六球', -6, inplace=True)
+    data.replace('受六/六球半', -6.25, inplace=True)
+    data.replace('受六球半', -6.5, inplace=True)
+    data.replace('受六球半/七', -6.75, inplace=True)
+
+    data.replace('受七球', -7, inplace=True)
+    data.replace('受七/七球半', -7.25, inplace=True)
+    data.replace('受七球半', -7.5, inplace=True)
+    data.replace('受七球半/八', -7.75, inplace=True)
+
+    data.replace('0.5/1', 0.75, inplace=True)
+    data.replace('1/1.5', 1.25, inplace=True)
+    data.replace('1.5/2', 1.75, inplace=True)
+    data.replace('2/2.5', 2.25, inplace=True)
+    data.replace('2.5/3', 2.75, inplace=True)
+    data.replace('3/3.5', 3.25, inplace=True)
+    data.replace('3.5/4', 3.75, inplace=True)
+    data.replace('4/4.5', 4.25, inplace=True)
+    data.replace('4.5/5', 4.75, inplace=True)
+    data.replace('5/5.5', 5.25, inplace=True)
+    data.replace('5.5/6', 5.75, inplace=True)
+    data.replace('6/6.5', 6.25, inplace=True)
+    data.replace('6.5/7', 6.75, inplace=True)
     data.replace('7/7.5', 7.25, inplace=True)
     data.replace('7.5/8', 7.75, inplace=True)
 
@@ -68,7 +101,7 @@ def dar(data):
     # data['主客结果'] = data.apply(lambda x: 1 if (float)(x['主']) - (float)(x['客']) > (float)(x['主客盘口']) else (0 if (float)(x['主']) - (float)(x['客']) == (float)(x['主客盘口']) else -1), axis=1)
     # data['大小结果'] = data.apply(lambda x: 1 if (float)(x['主']) + (float)(x['客']) > (float)(x['大小盘口']) else (0 if (float)(x['主']) + (float)(x['客']) == (float)(x['主客盘口']) else -1), axis=1)
     root = os.getcwd()
-    path_done = root + '/' + 'done' + '.xlsx'
+    path_done = root + '\\' + 'done' + '.xlsx'
     done_sp = pd.read_excel(path_done)
     #print(type(data))
     data_list = data["编号"].tolist()
@@ -83,7 +116,7 @@ def dar(data):
     #print(data)
 
 
-    path = root + '/' + 'Tdata' + '.xlsx'
+    path = root + '\\' + 'Tdata' + '.xlsx'
     Tdata = pd.read_excel(path)
     result = Tdata.append(data, ignore_index=True)
     result['编号'] = result['编号'].astype('str')
@@ -99,10 +132,10 @@ def dar(data):
 
 def EuroandAsiaUpdata(gameid):
     root = os.getcwd()
-    path_asia = root + '/' + 'data' + '/' + str(gameid) + 'Asia365bet' + '.xlsx'
-    path_euro = root + '/' + 'data' + '/' + str(gameid) + 'Euro365bet' + '.xlsx'
-    path_bs = root + '/' + 'data' + '/' + str(gameid) + 'BS365bet' + '.xlsx'
-    path = root + '/' + 'Tdata' + '.xlsx'
+    path_asia = root + '\\' + 'data' + '\\' + str(gameid) + 'Asia365bet' + '.xlsx'
+    path_euro = root + '\\' + 'data' + '\\' + str(gameid) + 'Euro365bet' + '.xlsx'
+    path_bs = root + '\\' + 'data' + '\\' + str(gameid) + 'BS365bet' + '.xlsx'
+    path = root + '\\' + 'Tdata' + '.xlsx'
     Udata = pd.read_excel(path)
     list_asia = pd.read_excel(path_asia)
     print(gameid)
@@ -182,24 +215,34 @@ def EuroandAsiaUpdata(gameid):
     Udata.replace('四球半', 4.5, inplace=True)
     Udata.replace('四球半/五球', 4.75, inplace=True)
 
+    Udata.replace('五球', 5, inplace=True)
+    Udata.replace('五/五球半', 5.25, inplace=True)
+    Udata.replace('五球半', 5.5, inplace=True)
+    Udata.replace('五球半/六', 5.75, inplace=True)
+
+    Udata.replace('六球', 6, inplace=True)
+    Udata.replace('六/六球半', 6.25, inplace=True)
     Udata.replace('六球半', 6.5, inplace=True)
-    Udata.replace('六球半/七球', 6.75, inplace=True)
+    Udata.replace('六球半/七', 6.75, inplace=True)
+
     Udata.replace('七球', 7, inplace=True)
-    Udata.replace('七球/七球半', 7.25, inplace=True)
+    Udata.replace('七/七球半', 7.25, inplace=True)
+    Udata.replace('七球半', 7.5, inplace=True)
+    Udata.replace('七球半/七', 7.75, inplace=True)
 
-    Udata.replace('0.5/1', 0.75, inplace = True)
-    Udata.replace('1/1.5', 1.25, inplace = True)
-    Udata.replace('1.5/2', 1.75, inplace = True)
-    Udata.replace('2/2.5', 2.25, inplace = True)
-    Udata.replace('2.5/3', 2.75, inplace = True)
-    Udata.replace('3/3.5', 3.25, inplace = True)
-    Udata.replace('3.5/4', 3.75, inplace = True)
-    Udata.replace('4/4.5', 4.25, inplace = True)
-    Udata.replace('4.5/5', 4.75, inplace = True)
-    Udata.replace('5/5.5', 5.25, inplace = True)
-
-    Udata.replace('5.5/6', 5.75, inplace = True)
-
+    Udata.replace('0.5/1', 0.75, inplace=True)
+    Udata.replace('1/1.5', 1.25, inplace=True)
+    Udata.replace('1.5/2', 1.75, inplace=True)
+    Udata.replace('2/2.5', 2.25, inplace=True)
+    Udata.replace('2.5/3', 2.75, inplace=True)
+    Udata.replace('3/3.5', 3.25, inplace=True)
+    Udata.replace('3.5/4', 3.75, inplace=True)
+    Udata.replace('4/4.5', 4.25, inplace=True)
+    Udata.replace('4.5/5', 4.75, inplace=True)
+    Udata.replace('5/5.5', 5.25, inplace=True)
+    Udata.replace('5.5/6', 5.75, inplace=True)
+    Udata.replace('6/6.5', 6.25, inplace=True)
+    Udata.replace('6.5/7', 6.75, inplace=True)
     Udata.replace('7/7.5', 7.25, inplace=True)
     Udata.replace('7.5/8', 7.75, inplace=True)
 
@@ -222,12 +265,28 @@ def EuroandAsiaUpdata(gameid):
     Udata.replace('受让四球/四球半', -4.25, inplace=True)
     Udata.replace('受让四球半', -4.5, inplace=True)
     Udata.replace('受让四球半/五球', -4.75, inplace=True)
+    Udata.replace('受五球', -5, inplace=True)
+    Udata.replace('受五/五球半', -5.25, inplace=True)
+    Udata.replace('受五球半', -5.5, inplace=True)
+    Udata.replace('受五球半/六', -5.75, inplace=True)
+
+    Udata.replace('受六球', -6, inplace=True)
+    Udata.replace('受六/六球半', -6.25, inplace=True)
+    Udata.replace('受六球半', -6.5, inplace=True)
+    Udata.replace('受六球半/七', -6.75, inplace=True)
+
+    Udata.replace('受七球', -7, inplace=True)
+    Udata.replace('受七/七球半', -7.25, inplace=True)
+    Udata.replace('受七球半', -7.5, inplace=True)
+    Udata.replace('受七球半/八', -7.75, inplace=True)
+
+
     Udata.to_excel(path, index=None)
     return
 
 def Singleupdata(Homescore, Guestscore, gameid, Date):
     root = os.getcwd()
-    path = root + '/' + 'Tdata' + '.xlsx'
+    path = root + '\\' + 'Tdata' + '.xlsx'
     Udata = pd.read_excel(path)
 
     print(gameid)
