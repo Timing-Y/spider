@@ -33,6 +33,9 @@ user_agent = ["Mozilla/5.0 (Windows NT 10.0; WOW64)", 'Mozilla/5.0 (Windows NT 6
               'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.11 (KHTML, like Gecko) Chrome/20.0.1132.11 TaoBrowser/3.0 Safari/536.11']
 
 
+
+
+
 def spider_score(gameid):
     stock_total = []
     for page in range(1, 2):
@@ -131,8 +134,12 @@ def gamespiderAsia( gameid , betid):
     time_now = time.strftime("%Y%m%d%H%M", time.localtime())
     #print(gameid)
     #print(result)
+
     betstr = ['365bet', '10bet', 'aobet']
     df = pd.DataFrame(result)
+    path = root + '\\' + 'data\\' + str(gameid) + 'Asia' + betstr[betid] + '.xlsx'
+    df.to_excel(path, header=None)
+
     if len(result):
         # deadtime = result[1][5].replace("-","")
         # print(deadtime)
@@ -157,11 +164,10 @@ def gamespiderAsia( gameid , betid):
             else:
                 gametime = (int)(result[1][0])
             time_diff = (int)(time_now_stamp - deadtime_stamp)
-            # print(gametime)
-            # print(deadtime_stamp)
-            # print(time_now_stamp)
+            # print(gameid)
+            # print(deadtime)
             # print(time_diff)
-            if ((gametime >= 60) & (time_diff >= 3600)):
+            if (((gametime >= 60) & (time_diff >= 2400))|((gametime >= 85) & (time_diff >= 600))):
                 score = spider_score(gameid)
                 guesssp.spider_done(gameid)
                 # abc = (str)(result[1][1])
@@ -171,8 +177,6 @@ def gamespiderAsia( gameid , betid):
                 # print('test')
                 dataarrange.Singleupdata(Homescore, Guestscore, gameid, Date)
 
-    path = root + '/' + 'data/' + str(gameid) + 'Asia' + betstr[betid] +'.xlsx'
-    df.to_excel(path, header=None)
     return
 
 def gamespiderEuro( gameid , betid):
@@ -232,7 +236,7 @@ def gamespiderEuro( gameid , betid):
 
     df = pd.DataFrame(result)
     betstr = ['365bet', '10bet', 'aobet']
-    path = root + '/' + 'data/' + str(gameid) + 'Euro' + betstr[betid] + '.xlsx'
+    path = root + '\\' + 'data\\' + str(gameid) + 'Euro' + betstr[betid] + '.xlsx'
     #print(df)
     df.to_excel(path, header=None)
     return
@@ -305,7 +309,33 @@ def gamespiderBS( gameid , betid):
     # deadtime = deadtime.replace(":", "")
     betstr = ['365bet', '10bet', 'aobet']
     df = pd.DataFrame(result)
-    path = root + '/' + 'data/' + str(gameid) + 'BS' + betstr[betid] + '.xlsx'
+    path = root + '\\' + 'data\\' + str(gameid) + 'BS' + betstr[betid] + '.xlsx'
     df.to_excel(path, header=None)
     return
 
+def spider_determine(gameid):
+    date = spider_score(gameid)
+    if(len(date)==3):
+        Homescore = date[0]
+        Guestscore = date[1]
+        Date = date[2]
+    elif(len(date)==1):
+        Date = date[0]
+    #print(Date)
+    time_now = time.strftime("%Y%m%d%H%M", time.localtime())
+    time_now_stamp = time.mktime(time.strptime(time_now, "%Y%m%d%H%M"))
+    starttime_stamp = time.mktime(time.strptime(Date, "%Y-%m-%d %H:%M"))
+    time_diff = (int)(time_now_stamp - starttime_stamp)
+    #print(time_diff)
+    if(time_diff>=518400):
+        guesssp.spider_done(gameid)
+    if (time_diff > 7200):
+        if (len(date) == 3):
+            guesssp.spider_done(gameid)
+            dataarrange.Singleupdata(Homescore, Guestscore, gameid, Date)
+    if((time_diff>=-14400) & (time_diff<=2400)):
+        gamespiderAsia(gameid, 0)
+        gamespiderEuro(gameid, 0)
+        gamespiderBS(gameid, 0)
+        dataarrange.EuroandAsiaUpdata(gameid)
+#spider_determine(1998672)
