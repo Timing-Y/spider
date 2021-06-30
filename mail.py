@@ -12,7 +12,7 @@ my_pass = 'WAVPQHXGLGUAYZXC'  # 发件人邮箱密码
 my_user = '641678112@qq.com'  # 收件人邮箱账号，我这边发送给自己
 
 
-def mail(data,time):
+def mail(data,time,state):
     ret = True
     try:
 
@@ -22,14 +22,15 @@ def mail(data,time):
         message['Subject'] = time  # 邮件的主题，也可以说是标题
 
         # 邮件正文内容
-        message.attach(MIMEText(data, 'HTML', 'utf-8'))
-
+        if state == 1:
+            message.attach(MIMEText(data, 'HTML', 'utf-8'))
+        elif state == 2:
         # 构造附件1，传送当前目录下的 test.txt 文件
-        # att1 = MIMEText(open('Allpred.xlsx', 'rb').read(), 'base64', 'utf-8')
-        # att1["Content-Type"] = 'application/octet-stream'
-        # # 这里的filename可以任意写，写什么名字，邮件中显示什么名字
-        # att1["Content-Disposition"] = 'attachment; filename="Allpred.xlsx"'
-        # message.attach(att1)
+            att1 = MIMEText(open((str)(data), 'rb').read(), 'base64', 'utf-8')
+            att1["Content-Type"] = 'application/octet-stream'
+        # 这里的filename可以任意写，写什么名字，邮件中显示什么名字
+            att1["Content-Disposition"] = 'attachment; filename="1.xlsx"'
+            message.attach(att1)
 
 
         server = smtplib.SMTP_SSL("smtp.126.com", 465)  # 发件人邮箱中的SMTP服务器，端口是25
