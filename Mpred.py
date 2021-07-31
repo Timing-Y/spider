@@ -9,8 +9,7 @@ import pandas as pd
 
 
 # Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-
+def pred( ):
     root = os.getcwd()
     nearpred_path = root + '/' + 'Mergepred' + '.xlsx'
     copypred_path = root + '/' + 'Copypred' + '.xlsx'
@@ -95,7 +94,7 @@ if __name__ == '__main__':
 
     Near_pred.drop(index=(Near_pred.loc[(abs(Near_pred['sum']) <= 11)].index), inplace=True)
     Near_pred.drop(index=(Near_pred.loc[(Near_pred['Normal'] == 0) & (Near_pred['Double'] == 0)].index), inplace=True)
-
+    #Near_pred.to_excel(copypred_path)
     out_pred = Near_pred[
         ["时间", "赛事", "状态", "主", ":", "客", "主队", "客队", "主客盘口", "大小盘口", "Normal", "Double"]]
     out_pred = out_pred.sort_values(by='时间', ascending=True)
@@ -108,7 +107,7 @@ if __name__ == '__main__':
         data_html = out_pred.to_html()
         ret = mail.mail(data_html, curtime, 1)
 
-    #Near_pred.to_excel(copypred_path)
+
 
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
